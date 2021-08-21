@@ -20,7 +20,11 @@
                     <div class="w-full">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
+                                @if(session('success'))
+                                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                                        <p>{{session('success')}}</p>
+                                    </div>
+                                @endif
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                     <tr>
@@ -29,6 +33,9 @@
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Quiz
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Quiz Type
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">Action</span>
@@ -48,48 +55,27 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz->title }}
+                                                        {{ $quiz->question }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz }}
+                                                        {{ $quiz->option_type }}
                                                     </div>
                                                 </td>
-
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <x-link-button :href="route('course.show', $course->id)">
-                                                        <i class="fa fa-eye"></i>
-                                                        {{ __('View') }}
-                                                    </x-link-button>
+{{--                                                    <x-link-button :href="route('quiz.show', $quiz->id)">--}}
+{{--                                                        <i class="fa fa-eye"></i>--}}
+{{--                                                        {{ __('View') }}--}}
+{{--                                                    </x-link-button>--}}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $i++ }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz->title }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz }}
-                                                    </div>
-                                                </td>
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-
-                                                </td>
-                                            </tr>
                                         @endforeach
                                     @else
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap" colspan="3">
-                                                <p class="text-red-300 text-center"> No quiz exists at the moment. create a course</p>
+                                                <p class="text-red-300 text-center"> No quiz exists at the moment. create a quiz</p>
                                             </td>
                                         </tr>
                                     @endif

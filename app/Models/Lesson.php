@@ -19,4 +19,9 @@ class Lesson extends Model
     {
         return $this->hasMany(Attachment::class);
     }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }

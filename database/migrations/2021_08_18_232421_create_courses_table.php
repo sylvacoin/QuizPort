@@ -17,9 +17,10 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->integer('owner_id');
+            $table->foreignId('owner_id')->constrained('users','id')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
+
         });
     }
 

@@ -15,10 +15,11 @@ class CreateQuizOptionsTable extends Migration
     {
         Schema::create('quiz_options', function (Blueprint $table) {
             $table->id();
-            $table->integer('quiz_id');
+            $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
             $table->string('option_key');
             $table->string('option_value');
             $table->timestamps();
+
         });
     }
 

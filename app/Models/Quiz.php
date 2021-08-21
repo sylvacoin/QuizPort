@@ -9,6 +9,8 @@ class Quiz extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function quiz_options()
     {
         return $this->hasMany(QuizOption::class);

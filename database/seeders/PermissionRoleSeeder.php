@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -43,7 +44,6 @@ class PermissionRoleSeeder extends Seeder
         $superRole = Role::find(3);
         if ($superRole)
             $superRole->syncPermissions($permissions);
-
 
     }
 }
