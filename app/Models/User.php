@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class, 'owner_id');
     }
+
+    public function CourseStudents()
+    {
+        return $this->hasManyThrough(CourseStudent::class, Course::class, null, 'owner_id');
+    }
 }

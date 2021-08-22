@@ -2,12 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1 pr-4">
-                {{ __('All Quizzes') }}
+                {{ __('All Courses') }}
             </h2>
             <div>
-                <x-link-button :href="route('quiz.create', $lesson->id)">
-                    {{ __('Add Question') }}
-                </x-link-button>
+
             </div>
         </div>
     </x-slot>
@@ -20,17 +18,7 @@
                     <div class="w-full">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                @if(session('success'))
-                                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-                                        <p>{{session('success')}}</p>
-                                    </div>
-                                @endif
 
-                                @if(session('error'))
-                                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
-                                        <p>{{session('error')}}</p>
-                                    </div>
-                                @endif
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                     <tr>
@@ -38,13 +26,10 @@
                                             S/N
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Quiz
+                                            Course Title
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Quiz Type
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Answer
+                                            Course Owner
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">Action</span>
@@ -53,9 +38,9 @@
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
 
-                                    @if($quizes->count() > 0)
+                                    @if($courses->count() > 0)
                                         @php $i = 1; @endphp
-                                        @foreach($quizes as $quiz)
+                                        @foreach($courses as $course)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
@@ -64,36 +49,27 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz->question }}
+                                                        {{ $course->title }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz->option_type }}
+                                                        {{ $course->owner->name }}
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $quiz->answer }}
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                                                    <form method="POST" action="{{ route('quiz.destroy', $quiz->id) }}">
-                                                        @csrf
-                                                        <x-button onclick="event.preventDefault(); this.closest('form').submit();" class="">
-                                                            <i class="fa fa-trash"></i>
-                                                            {{ __('Delete') }}
-                                                        </x-button>
-                                                    </form>
+                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <x-link-button :href="route('course.show', $course->id)">
+                                                        <i class="fa fa-eye"></i>
+                                                        {{ __('View') }}
+                                                    </x-link-button>
                                                 </td>
                                             </tr>
-
                                         @endforeach
                                     @else
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap" colspan="3">
-                                                <p class="text-red-300 text-center">No quiz exists at the moment. create a quiz</p>
+                                                <p class="text-red-300 text-center"> No courses exists at the moment. create a course</p>
                                             </td>
                                         </tr>
                                     @endif
@@ -104,7 +80,7 @@
                         </div>
                     </div>
                     <div class="py-2 px-2">
-                        {{ $quizes->links() }}
+                        {{ $courses->links() }}
                     </div>
                 </div>
             </div>

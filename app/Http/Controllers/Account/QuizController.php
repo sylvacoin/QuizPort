@@ -65,8 +65,24 @@ class QuizController extends Controller
 
     }
 
-    function toAlpha($num) {
+    function toAlpha($num)
+    {
         $alphabet = range('A', 'Z');
         return $alphabet[$num];
+    }
+
+    public function destroy( $quizId )
+    {
+        try{
+            $quiz = Quiz::find($quizId);
+            if (!$quiz)
+                throw new \Exception('Quiz not found');
+            $quiz->delete();
+            return back()->with('success', 'Quiz was deleted successfully');
+        }catch(\Exception $ex)
+        {
+            Log::error($ex);
+            return back()->with('error', $ex->getMessage());
+        }
     }
 }

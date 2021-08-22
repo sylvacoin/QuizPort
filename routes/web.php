@@ -5,6 +5,8 @@ use App\Http\Controllers\Account\TeacherController;
 use App\Http\Controllers\Account\CourseController;
 use App\Http\Controllers\Account\LessonController;
 use App\Http\Controllers\Account\QuizController;
+use App\Http\Controllers\Account\StudentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,16 +38,24 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('create', [CourseController::class, 'show'])->name('course.create');
         Route::post('create', [CourseController::class, 'store'])->name('course.save');
         Route::post('delete/{id}', [CourseController::class, 'destroy'])->name('course.destroy');
-        Route::get('/{courseId}/detail', [LessonController::class, 'index'])->name('course.show');
-        Route::get('/{courseId}/create', [LessonController::class, 'create'])->name('lesson.create');
-        Route::post('/{courseId}/create', [LessonController::class, 'store'])->name('lesson.save');
+        Route::get('{courseId}/detail', [LessonController::class, 'index'])->name('course.show');
+        Route::get('{courseId}/create', [LessonController::class, 'create'])->name('lesson.create');
+        Route::post('{courseId}/create', [LessonController::class, 'store'])->name('lesson.save');
     });
 
     Route::group(['prefix' => 'lessons'], function(){
-       Route::post('delete/{id}', [LessonController::class, 'destroy'])->name('lesson.destroy');
-        Route::get('/{lessonId}/detail', [QuizController::class, 'index'])->name('lesson.show');
-        Route::get('/{lessonId}/create', [QuizController::class, 'create'])->name('quiz.create');
-        Route::post('/{lessonId}/create', [QuizController::class, 'store'])->name('quiz.save');
+        Route::post('delete/{id}', [LessonController::class, 'destroy'])->name('lesson.destroy');
+        Route::get('{lessonId}/detail', [QuizController::class, 'index'])->name('lesson.show');
+        Route::get('{lessonId}/create', [QuizController::class, 'create'])->name('quiz.create');
+        Route::post('{lessonId}/create', [QuizController::class, 'store'])->name('quiz.save');
+    });
+
+    Route::group(['prefix' => 'quiz'], function(){
+        Route::post('delete/{quizId}', [QuizController::class, 'destroy'])->name('quiz.destroy');
+    });
+
+    Route::group(['prefix' => 'students'], function(){
+        Route::get('my-courses', [StudentController::class, 'myCourses'])->name('student.my-courses');
     });
 });
 
