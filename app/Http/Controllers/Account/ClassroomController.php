@@ -40,7 +40,8 @@ class ClassroomController extends Controller
             $owner = Auth::user();
             $classroom = $owner->classrooms()->create([
                 'title' => $request->title,
-                'slug' => Str::slug($request->title)
+                'slug' => Str::slug($request->title),
+                'room_id' => Str::random(13),
             ]);
 
             if ($classroom)

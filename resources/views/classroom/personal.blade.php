@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1 pr-4">
-                {{ __('My Courses') }}
+                {{ __('My Classes') }}
             </h2>
             <div>
 
@@ -16,11 +16,11 @@
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="flex flex-wrap mb-4">
                     <div class="w-full md:w-1/4 lg:w-1/4">
-                        <form class="px-8 pt-6 pb-8 mb-4" method="post" action="{{route('course.create')}}">
+                        <form class="px-8 pt-6 pb-8 mb-4" method="post" action="{{route('classroom.create')}}">
                             @csrf
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                                    Course Title
+                                    Name
                                 </label>
                                 <x-input id="password" class="block mt-1 w-full"
                                          type="text"
@@ -29,7 +29,7 @@
                             </div>
 
                             <x-button>
-                                Create Course
+                                Create Classroom
                             </x-button>
 
                         </form>
@@ -55,7 +55,7 @@
                                             S/N
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Course Title
+                                            Name
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">Action</span>
@@ -64,9 +64,9 @@
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
 
-                                    @if($courses->count() > 0)
+                                    @if($classrooms->count() > 0)
                                         @php $i = 1; @endphp
-                                        @foreach($courses as $course)
+                                        @foreach($classrooms as $classroom)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
@@ -75,18 +75,18 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <a href="{{route('course.show', $course->id)}}" >
-                                                            {{ $course->title }}
+                                                        <a href="{{route('classroom.show', $classroom->id)}}" >
+                                                            {{ $classroom->title }}
                                                         </a>
                                                     </div>
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                                                    <form method="POST" action="{{ route('course.destroy', $course->id) }}">
+                                                    <form method="POST" action="{{ route('classroom.destroy', $classroom->id) }}">
                                                         @csrf
 
-                                                        <x-link-button :href="route('course.destroy', $course->id)"
+                                                        <x-link-button :href="route('classroom.destroy', $classroom->id)"
                                                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();" class="">
                                                             <i class="fa fa-trash"></i>
@@ -99,7 +99,7 @@
                                     @else
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap" colspan="3">
-                                                <p class="text-red-300 text-center"> No courses exists at the moment. create a course</p>
+                                                <p class="text-red-300 text-center"> No classrooms exists at the moment. create a classroom</p>
                                             </td>
                                         </tr>
                                     @endif
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="py-2 px-2">
-                        {{ $courses->links() }}
+                        {{ $classrooms->links() }}
                     </div>
                 </div>
             </div>

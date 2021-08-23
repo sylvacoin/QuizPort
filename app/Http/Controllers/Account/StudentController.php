@@ -35,20 +35,20 @@ class StudentController extends Controller
 //            dd($students);
     }
 
-    public function courses()
+    public function classrooms()
     {
-        $courses = Classroom::paginate(10);
-        return view('student.classroom', compact('courses'));
+        $classrooms = Classroom::paginate(10);
+        return view('student.classroom', compact('classrooms'));
     }
 
-    public function myCourses()
+    public function myClassrooms()
     {
         $studentId = Auth::user()->id;
 
-        $courses = Classroom::with('owner')->whereHas('course_students', function($q) use ($studentId){
+        $classrooms = Classroom::with('owner')->whereHas('classroom_students', function($q) use ($studentId){
             $q->where('student_id', $studentId);
         })->paginate(10);
-        return view('student.my-classroom', compact('courses'));
+        return view('student.my-classes', compact('classrooms'));
     }
 
 

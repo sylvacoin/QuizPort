@@ -10,7 +10,7 @@ class Lesson extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function course()
+    public function classroom()
     {
         return $this->belongsTo(Classroom::class);
     }

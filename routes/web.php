@@ -47,16 +47,16 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('create-teachers', [TeacherController::class, 'store'])->name('teachers.save');
     });
     Route::group(['prefix' => 'classroom'], function (){
-        Route::get('', [ClassroomController::class, 'index'])->name('course.index');
-        Route::get('my-classroom', [ClassroomController::class, 'myCourses'])->name('course.personal');
-        Route::get('create', [ClassroomController::class, 'show'])->name('course.create');
+        Route::get('', [ClassroomController::class, 'index'])->name('classroom.index');
+        Route::get('my-classroom', [ClassroomController::class, 'myCourses'])->name('classroom.personal');
+        Route::get('create', [ClassroomController::class, 'show'])->name('classroom.create');
 
-        Route::post('create', [ClassroomController::class, 'store'])->name('course.save');
-        Route::post('delete/{id}', [ClassroomController::class, 'destroy'])->name('course.destroy');
-        Route::get('{courseId}/detail', [LessonController::class, 'index'])->name('course.show');
-        Route::get('{courseId}/create', [LessonController::class, 'create'])->name('lesson.create');
-        Route::post('{courseId}/create', [LessonController::class, 'store'])->name('lesson.save');
-        Route::get('{courseId}/subscribe', [ClassroomController::class, 'subscribeToCourse'])->name('course.subscribe');
+        Route::post('create', [ClassroomController::class, 'store'])->name('classroom.save');
+        Route::post('delete/{id}', [ClassroomController::class, 'destroy'])->name('classroom.destroy');
+        Route::get('{classroomId}/detail', [LessonController::class, 'index'])->name('classroom.show');
+        Route::get('{classroomId}/create', [LessonController::class, 'create'])->name('lesson.create');
+        Route::post('{classroomId}/create', [LessonController::class, 'store'])->name('lesson.save');
+        Route::get('{classroomId}/subscribe', [ClassroomController::class, 'subscribeToCourse'])->name('classroom.subscribe');
     });
 
     Route::group(['prefix' => 'lessons'], function(){
@@ -71,7 +71,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     Route::group(['prefix' => 'students'], function(){
-        Route::get('my-classroom', [StudentController::class, 'myCourses'])->name('student.my-classroom');
+        Route::get('my-classroom', [StudentController::class, 'myClassrooms'])->name('student.my-classroom');
     });
 });
 

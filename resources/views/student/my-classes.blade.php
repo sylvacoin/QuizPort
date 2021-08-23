@@ -38,9 +38,9 @@
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
 
-                                    @if($courses->count() > 0)
+                                    @if($classrooms->count() > 0)
                                         @php $i = 1; @endphp
-                                        @foreach($courses as $course)
+                                        @foreach($classrooms as $classroom)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
@@ -49,17 +49,17 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $course->title }}
+                                                        {{ $classroom->title }}
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $course->owner->name }}
+                                                        {{ $classroom->owner->name }}
                                                     </div>
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <x-link-button :href="route('course.show', $course->id)">
+                                                    <x-link-button :href="route('classroom.show', $classroom->id)">
                                                         <i class="fa fa-eye"></i>
                                                         {{ __('View') }}
                                                     </x-link-button>
@@ -69,7 +69,7 @@
                                     @else
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap" colspan="3">
-                                                <p class="text-red-300 text-center"> You have no course at the moment please subsctibe to one</p>
+                                                <p class="text-red-300 text-center"> You have no classroom at the moment please subsctibe to one</p>
                                             </td>
                                         </tr>
                                     @endif
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="py-2 px-2">
-                        {{ $courses->links() }}
+                        {{ $classrooms->links() }}
                     </div>
                 </div>
             </div>

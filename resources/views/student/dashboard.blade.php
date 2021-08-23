@@ -43,21 +43,21 @@
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        @if(isset($courses) && !empty($courses) && $courses->count())
+                        @if(isset($classrooms) && !empty($classrooms) && $classrooms->count())
                             @php $i = 1; @endphp
-                            @foreach($courses as $course)
+                            @foreach($classrooms as $classroom)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap" >
                                 <p> {{$i++}}</p>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap" >
-                                <p> {{$course->title ?? 'N/A'}} </p>
+                                <p> {{$classroom->title ?? 'N/A'}} </p>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap" >
-                                <p> {{$course->owner->name ?? 'N/A'}} </p>
+                                <p> {{$classroom->owner->name ?? 'N/A'}} </p>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap" >
-                                <x-link-button :href="route('course.subscribe', $course->id)" class="text-xs">
+                                <x-link-button :href="route('classroom.subscribe', $classroom->id)" class="text-xs">
                                     <i class="fa fa-eye"></i>
                                     {{ __('Subscribe') }}
                                 </x-link-button>

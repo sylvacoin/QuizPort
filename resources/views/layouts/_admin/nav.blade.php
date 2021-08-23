@@ -18,10 +18,10 @@
                     <x-nav-link :href="route('teachers.index')" :active="request()->is('teachers') || request()->is('teachers/*')">
                         {{ __('Teachers') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('course.index')" :active="request()->is('courses') || request()->is('courses')">
+                    <x-nav-link :href="route('classroom.index')" :active="request()->is('classrooms') || request()->is('classrooms')">
                         {{ __('Courses') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('course.personal')" :active="request()->is('courses') || request()->is('courses/*')">
+                    <x-nav-link :href="route('classroom.personal')" :active="request()->is('classrooms') || request()->is('classrooms/*')">
                         {{ __('My Courses') }}
                     </x-nav-link>
                 </div>
@@ -78,10 +78,10 @@
             <x-responsive-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
                 {{ __('Teachers') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')">
+            <x-responsive-nav-link :href="route('classroom.index')" :active="request()->routeIs('classroom.index')">
                 {{ __('Courses') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('course.personal')" :active="request()->routeIs('course.personal')">
+            <x-responsive-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
                 {{ __('My Courses') }}
             </x-responsive-nav-link>
         </div>

@@ -22,13 +22,13 @@ class DashboardController extends Controller
     public function student()
     {
         $studentId = Auth::user()->id;
-        $courses = $this->getCourses()->whereHas('course_students', function($q) use ($studentId){
+        $classrooms = $this->getClasses()->whereHas('classroom_students', function($q) use ($studentId){
             $q->where('student_id', '!=', $studentId);
         })->paginate(10);
-        return view('student.dashboard', compact('courses'));
+        return view('student.dashboard', compact('classrooms'));
     }
 
-    private function getCourses()
+    private function getClasses()
     {
         return Classroom::with('owner');
     }

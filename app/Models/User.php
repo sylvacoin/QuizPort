@@ -53,12 +53,12 @@ class User extends Authenticatable
         return $this->getRoleNames()->first();
     }
 
-    public function courses()
+    public function classrooms()
     {
         return $this->hasMany(Classroom::class, 'owner_id');
     }
 
-    public function CourseStudents()
+    public function ClassroomStudents()
     {
         return $this->hasManyThrough(ClassroomStudent::class, Classroom::class, null, 'owner_id');
     }

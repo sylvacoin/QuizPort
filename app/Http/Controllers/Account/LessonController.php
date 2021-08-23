@@ -15,35 +15,34 @@ use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
-    public function index($courseId)
+    public function index($classroomId)
     {
-        $lessons = Lesson::where('course_id', $courseId)->orderBy('status', 'desc')->paginate(10);
-        $course = Classroom::find($courseId);
+        $lessons = Lesson::where('classroom_id', $classroomId)->orderBy('status', 'desc')->paginate(10);
+        $classroom = Classroom::find($classroomId);
         //get all the classroom
-        return view('classroom.course-detail', compact(['course', 'lessons']));
+        return view('classroom.classroom-detail', compact(['classroom', 'lessons']));
     }
 
-    public function create($courseId)
+    public function create($classroomId)
     {
-        $course = Classroom::find($courseId);
-        return view('lessons.create', compact('course'));
+        $classroom = Classroom::find($classroomId);
+        return view('lessons.create', compact('classroom'));
     }
 
-    public function store(Request $request, $courseId)
+    public function store(Request $request, $classroomId)
     {
 
-        $course = Classroom::find($courseId);
+        $classroom = Classroom::find($classroomId);
 
-        if (!$course)
+        if (!$classroom)
             return back()->with('error', 'Classroom does not exist');
 
         try{
-            $lesson = $course->lessons()->create([
+            $lesson = $classroom->lessons()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'note' => $request->note,
-                'status' => $request->status,
-                'room_url' => Str::random(13),
+                'status' => $request->status
             ]);
 
             if ($request->file('attachments'))
@@ -74,7 +73,7 @@ class LessonController extends Controller
 
     public function show()
     {
-        //show the create course form
+        //show the create classroom form
     }
 
     public function update()
@@ -92,8 +91,8 @@ class LessonController extends Controller
             if (! $lesson)
                 return back()->with('error', 'Classroom was not found');
 
-            if ($lesson->course->owner_id != $owner->id)
-                return back()->with('error', 'You dont have right to modify this course');
+            if ($lesson->classroom->owner_id != $owner->id)
+                return back()->with('error', 'You dont have right to modify this classroom');
 
             $lesson->delete();
 
@@ -103,6 +102,6 @@ class LessonController extends Controller
             Log::error($ex);
             return back()->with('error', 'An error occurred please contact administrator');
         }
-        //deletes a particular course.
+        //deletes a particular classroom.
     }
 }

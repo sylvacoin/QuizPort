@@ -20,7 +20,7 @@ class Classroom extends Model
         return $this->hasMany(Lesson::class);
     }
 
-    public function course_students()
+    public function classroom_students()
     {
         return $this->hasMany(ClassroomStudent::class);
     }

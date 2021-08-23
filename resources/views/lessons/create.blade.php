@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1 pr-4">
-                {{ __('Create Lesson for '. $course->title?? 'Classroom') }}
+                {{ __('Create Lesson for '. $classroom->title?? 'Classroom') }}
             </h2>
             <div>
-                <x-link-button href="{{ route('course.show', $course->id) }}">
+                <x-link-button href="{{ route('classroom.show', $classroom->id) }}">
                     {{ __('Back') }}
                 </x-link-button>
             </div>
@@ -31,7 +31,7 @@
                                         <p>{{session('error')}}</p>
                                     </div>
                                 @endif
-                                    <form method="post" action="{{route('lesson.save', $course->id)}}" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('lesson.save', $classroom->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full px-3 mb-6 md:mb-0">
