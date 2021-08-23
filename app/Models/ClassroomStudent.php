@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseStudent extends Model
+class ClassroomStudent extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -17,6 +17,6 @@ class CourseStudent extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Classroom::class);
     }
 }

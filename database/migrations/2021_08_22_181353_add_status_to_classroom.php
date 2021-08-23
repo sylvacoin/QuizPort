@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateNoteToNullableInLessonsTable extends Migration
+class AddStatusToClassroom extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateNoteToNullableInLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::table('lessons', function (Blueprint $table) {
-            $table->longText('note')->nullable()->change();
+        Schema::table('classrooms', function (Blueprint $table) {
+            $table->integer('status')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class UpdateNoteToNullableInLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::table('lessons', function (Blueprint $table) {
-            $table->text('note')->nullable(false)->change();
+        Schema::table('classrooms', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

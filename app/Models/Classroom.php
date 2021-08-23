@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Classroom extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -18,5 +18,10 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
+    }
+
+    public function course_students()
+    {
+        return $this->hasMany(ClassroomStudent::class);
     }
 }

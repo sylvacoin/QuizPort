@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1 pr-4">
-                {{ __(($course->title??'').' Lessons') }}
+                {{ __(($classroom->title??'').' Lessons') }}
             </h2>
             <div>
-                <x-link-button :href="route('lesson.create', $course->id)">
+                <x-link-button :href="route('lesson.create', $classroom->id)">
                     {{ __('Create a Lesson') }}
                 </x-link-button>
             </div>

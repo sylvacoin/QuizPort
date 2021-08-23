@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1 pr-4">
-                {{ __('Create Quiz for '. $lesson->title?? 'Course') }}
+                {{ __('Create Quiz for '. $lesson->title?? 'Classroom') }}
             </h2>
             <div>
                 <x-link-button href="{{ route('course.show', $lesson->id) }}">

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Imports\TeachersImport;
-use App\Models\Course;
-use App\Models\CourseStudent;
+use App\Models\Classroom;
+use App\Models\ClassroomStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +27,7 @@ class StudentController extends Controller
     public function myStudents()
     {
 //        $teacherId = Auth::user()->id;
-//        $students = User::whereHas('courses', function($query) use ($teacherId) {
+//        $students = User::whereHas('classroom', function($query) use ($teacherId) {
 //            $query->where('owner_id', $teacherId);
 //        })->map(function ($el) {
 //            return $el->students();
@@ -37,18 +37,18 @@ class StudentController extends Controller
 
     public function courses()
     {
-        $courses = Course::paginate(10);
-        return view('student.courses', compact('courses'));
+        $courses = Classroom::paginate(10);
+        return view('student.classroom', compact('courses'));
     }
 
     public function myCourses()
     {
-        $ownerId = Auth::user()->id;
-        $courses = Course::whereHas("owner", function ($user) use ($ownerId) {
-            $user->where('owner_id', $ownerId);
+        $studentId = Auth::user()->id;
+
+        $courses = Classroom::with('owner')->whereHas('course_students', function($q) use ($studentId){
+            $q->where('student_id', $studentId);
         })->paginate(10);
-        return view('student.my-courses', compact('courses'));
-        //get all the courses belonging to particular teacher
+        return view('student.my-classroom', compact('courses'));
     }
 
 
