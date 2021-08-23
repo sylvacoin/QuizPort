@@ -61,7 +61,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'lessons'], function(){
         Route::post('delete/{id}', [LessonController::class, 'destroy'])->name('lesson.destroy');
-        Route::get('{lessonId}/detail', [QuizController::class, 'index'])->name('lesson.show');
+        Route::get('{id}/detail', [LessonController::class, 'show'])->name('lesson.show');
+        Route::get('{lessonId}/quiz', [QuizController::class, 'index'])->name('quiz.index');
         Route::get('{lessonId}/create', [QuizController::class, 'create'])->name('quiz.create');
         Route::post('{lessonId}/create', [QuizController::class, 'store'])->name('quiz.save');
     });

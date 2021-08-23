@@ -17,12 +17,12 @@ class TeacherController extends Controller
         });
         $teachers = $users->paginate(4);
 
-        return view('Account.index', compact('teachers'));
+        return view('admin.account.index', compact('teachers'));
     }
 
     public function bulk_create()
     {
-        return view('Account.bulk-create');
+        return view('admin.account.bulk-create');
     }
 
     public function store(Request $request)

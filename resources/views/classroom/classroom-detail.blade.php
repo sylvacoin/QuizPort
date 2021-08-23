@@ -94,11 +94,11 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
                                                         <div class="flex flex-wrap justify-end">
-                                                            <x-link-button href="{{ route('lesson.show', $lesson->id)  }}" title="Quiz Menu" class="mx-1">
+                                                            <x-link-button href="{{ route('quiz.index', $lesson->id)  }}" title="Quiz Menu" class="mx-1">
                                                                 <i class="icofont-learn"></i>
                                                                 Quiz
                                                             </x-link-button>
-                                                            <x-link-button href="#" title="View details" class="mx-1">
+                                                            <x-link-button href="{{ route('lesson.show', $lesson->id)  }}" title="View details" class="mx-1">
                                                                 <i class="icofont-exclamation-circle"></i>
                                                                 View
                                                             </x-link-button>

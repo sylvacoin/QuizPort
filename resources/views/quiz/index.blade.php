@@ -5,8 +5,12 @@
                 {{ __('All Quizzes') }}
             </h2>
             <div>
+
                 <x-link-button :href="route('quiz.create', $lesson->id)">
                     {{ __('Add Question') }}
+                </x-link-button>
+                <x-link-button :href="route('classroom.show', $lesson->classroom->id)">
+                    {{ __('Back') }}
                 </x-link-button>
             </div>
         </div>

@@ -16,6 +16,12 @@
                     <x-nav-link :href="route('teacher.dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-responsive-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
+                        {{ __('My Courses') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
+                        {{ __('My Students') }}
+                    </x-responsive-nav-link>
                 </div>
             </div>
 
@@ -35,6 +41,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link >
+                            {{ __('Account Setting') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -67,6 +76,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('My Courses') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('My Students') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -77,6 +92,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Account Setting') }}
+                </x-responsive-nav-link>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

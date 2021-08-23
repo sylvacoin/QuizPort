@@ -71,9 +71,17 @@ class LessonController extends Controller
 
     }
 
-    public function show()
+    public function show($lessonId)
     {
-        //show the create classroom form
+        try{
+            $lesson=Lesson::find($lessonId);
+            if (!$lesson)
+                throw new \Exception('Lesson was not found');
+            return view('lessons.details', compact('lesson'));
+        }catch (\Exception $ex)
+        {
+            return back()->with('error', $ex->getMessage());
+        }
     }
 
     public function update()
