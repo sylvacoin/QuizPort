@@ -90,7 +90,7 @@ class ClassroomController extends Controller
         //deletes a particular classroom.
     }
 
-    public function subscribeToCourse($classroomId)
+    public function subscribeToClassroom($classroomId)
     {
         try{
             $user = Auth::user();
@@ -111,6 +111,28 @@ class ClassroomController extends Controller
                 throw new \Exception('An error occurred. Please contact administrator');
 
             return back()->with('success', 'Your subscription was successful');
+        }catch (\Exception $ex)
+        {
+            Log::error($ex);
+            return back()->with('error', $ex->getMessage());
+        }
+    }
+
+    public function unsubscribeFromClassroom($classroomId)
+    {
+        try{
+            $user = Auth::user();
+
+            if ($user->getRole() != 'student')
+                throw new \Exception('This account is not a student account');
+
+            $classroomFound = ClassroomStudent::where('classroom_id', $classroomId)->where('student_id', $user->id)->first();
+            if (!$classroomFound)
+                throw new \Exception('You have not subscribed to this classroom');
+
+            $classroomFound->delete();
+
+            return back()->with('success', 'Your successfully unsubscribed to '.$classroomFound->classroom->title.' class');
         }catch (\Exception $ex)
         {
             Log::error($ex);

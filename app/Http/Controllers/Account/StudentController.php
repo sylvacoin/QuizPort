@@ -26,13 +26,11 @@ class StudentController extends Controller
 
     public function myStudents()
     {
-//        $teacherId = Auth::user()->id;
-//        $students = User::whereHas('classroom', function($query) use ($teacherId) {
-//            $query->where('owner_id', $teacherId);
-//        })->map(function ($el) {
-//            return $el->students();
-//        });
-//            dd($students);
+        $teacherId = Auth::user()->id;
+        $students = User::whereHas('ClassroomStudents', function($query) use ($teacherId) {
+            $query->where('owner_id', $teacherId);
+        })->get();
+        dd($students);
     }
 
     public function classrooms()

@@ -7,7 +7,6 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('teacher.dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                        {T}
                     </a>
                 </div>
 
@@ -16,12 +15,12 @@
                     <x-nav-link :href="route('teacher.dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-responsive-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
+                    <x-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
                         {{ __('My Courses') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('classroom.personal')" :active="request()->routeIs('classroom.personal')">
+                    </x-nav-link>
+                    <x-nav-link :href="route('student.my-students')" :active="request()->routeIs('student.my-students')">
                         {{ __('My Students') }}
-                    </x-responsive-nav-link>
+                    </x-nav-link>
                 </div>
             </div>
 

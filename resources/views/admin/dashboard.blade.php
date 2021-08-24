@@ -21,7 +21,11 @@
                                     <div class="mt-1">
                                         <div class="flex flex-row justify-start items-center">
                                             <div class="text-2xl">
-                                                35
+                                                @if(isset($teacher_count))
+                                                    {{$teacher_count}}
+                                                @else
+                                                    0
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +50,11 @@
                                     <div class="mt-1">
                                         <div class="flex flex-row justify-start items-center">
                                             <div class="text-2xl">
-                                                67
+                                                @if(isset($student_count))
+                                                    {{$student_count}}
+                                                @else
+                                                    0
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +79,11 @@
                                     <div class="mt-1">
                                         <div class="flex flex-row justify-start items-center">
                                             <div class="text-2xl">
-                                                12
+                                                @if(isset($classroom_count))
+                                                    {{$classroom_count}}
+                                                @else
+                                                    0
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +108,11 @@
                                     <div class="mt-1">
                                         <div class="flex flex-row justify-start items-center">
                                             <div class="text-2xl">
-                                                135
+                                                @if(isset($lesson_count))
+                                                    {{$lesson_count}}
+                                                @else
+                                                    0
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

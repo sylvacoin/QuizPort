@@ -18,7 +18,17 @@
                     <div class="w-full">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                @if(session('success'))
+                                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                                        <p>{{session('success')}}</p>
+                                    </div>
+                                @endif
 
+                                @if(session('error'))
+                                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                                        <p>{{session('error')}}</p>
+                                    </div>
+                                @endif
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                     <tr>
@@ -59,6 +69,10 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <x-link-button :href="route('classroom.unsubscribe', $classroom->id)">
+                                                        <i class="fa fa-eye"></i>
+                                                        {{ __('Unsubscribe') }}
+                                                    </x-link-button>
                                                     <x-link-button :href="route('classroom.show', $classroom->id)">
                                                         <i class="fa fa-eye"></i>
                                                         {{ __('View') }}
